@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+
+
+           <table class="table  mt-4">
+  <thead>
+    <tr class="table-dark table-hover">
+      <th scope="col" class="fw-bolder fs-3">S_no</th>
+      <th scope="col" class="fw-bolder fs-3">Name</th>
+      <th scope="col" class="fw-bolder fs-3">Email</th>
+      <th scope="col" class="fw-bolder fs-3">Phone</th>
+        <th scope="col" class="fw-bolder fs-3">Guest's</th>
+         <th scope="col" class="fw-bolder fs-3">Date</th>
+         <th scope="col" class="fw-bolder fs-3">Time</th>
+        <th scope="col" class="fw-bolder fs-3">Message</th>
+        <th scope="col" class="fw-bolder fs-3">Accept</th>
+        <th scope="col" class="fw-bolder fs-3">Reject</th>
+
+
+
+
+    </tr>
+  </thead>
+               {% if key %}
+  <tbody>
+  {% for i in key %}
+    <tr>
+      <th scope="row" class="fs-5 table-dark">{{i.id}}</th>
+      <td class="fs-5 table-secondary">{{i.name}}</td>
+      <td class="fs-5 table-secondary">{{i.email}}</td>
+      <td class="fs-5 table-secondary">{{i.phone}}</td>
+        <td class="fs-5 table-secondary">{{i.guest}}</td>
+        <td class="fs-5 table-secondary">{{i.dob}}</td>
+        <td class="fs-5 table-secondary">{{i.time}}</td>
+        <td class="fs-5 table-secondary">{{i.message}}</td>
+        <td scope="row" class="fs-5 table-dark">
+            <form action="{% url 'conform' pk=i.id %}" method="post" name="conform">
+                {% csrf_token %}
+            <input type="submit" value="Accept" class="bg-success text-white fs-4">
+            </form>
+        </td>
+        <td scope="row" class="fs-5 table-dark">
+             <form action="{% url 'rejected' pk=i.id %}" method="post" name="">
+                {% csrf_token %}
+            <input type="submit" value="Reject" class="bg-danger text-white fs-4">
+             </form>
+        </td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+ {% endif %}
+</table>
+
+
+
+
+</body>
+</html>
